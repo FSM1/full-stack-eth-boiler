@@ -1,0 +1,37 @@
+{
+  "name": "blockchain",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "start": "etherlime ganache --networkId=1337",
+    "start:silent": "etherlime ganache --networkId=1337 --output=none",
+    "start:dev": "run-p start:silent deploy:local",
+    "build": "etherlime compile --runs=999 --exportAbi && yarn generate-typings",
+    "deploy:local": "etherlime deploy --runs=500",
+    "deploy:rinkeby": "etherlime deploy --network=rinkeby --runs=500",
+    "deploy:rinkeby:debug": "node --inspect-brk ./node_modules/etherlime/cli.js --timeout 30000 deploy --network=rinkeby --runs=50",
+    "test-contracts": "etherlime test --output=none --timeout 100000 --gas-report=true --runs=999",
+    "test-cov": "etherlime coverage --timeout 100000 --runs=999",
+    "remixd": "remixd -s . --remix-ide https://remix.ethereum.org",
+    "generate-typings": "typechain --target=ethers --outDir contractInterfaces/ \"build/*.json\"",
+    "test": "yarn start & yarn test-contracts"
+  },
+  "author": "Michael Yankelev",
+  "license": "MIT",
+  "dependencies": {
+    "bignumber.js": "9.0.0",
+    "dotenv": "8.0.0",
+    "etherlime": "2.2.0",
+    "etherlime-lib": "1.1.3",
+    "openzeppelin-solidity": "2.3.0",
+    "solc": "0.5.10"
+  },
+  "devDependencies": {
+    "ethers": "^4.0.40",
+    "npm-run-all": "^4.1.5",
+    "remixd": "0.1.8-alpha.14",
+    "typechain": "^1.0.3",
+    "typechain-target-ethers": "^1.0.3",
+    "typescript": "3.7.2"
+  }
+}

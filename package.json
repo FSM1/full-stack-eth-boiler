@@ -1,0 +1,58 @@
+{
+  "name": "full-stack-boilerplate",
+  "version": "1.0.1",
+  "description": "Full-Stack Boilerplate",
+  "main": "index.js",
+  "scripts": {
+    "build": "yarn wsrun --stages -c build",
+    "build:blockchain": "yarn wsrun -p blockchain -c build",
+    "build:webapp": "yarn wsrun -p webapp -c build",
+    "build:api": "yarn wsrun -p api -c build",
+    "start:dev": "yarn wsrun --parallel --exclude-missing start:dev",
+    "clean": "rm -rf ./node_modules && rm -rf ./*/node_modules",
+    "test:webapp": "cd webapp && yarn test:watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://gitlab.com/linumlabs/full-stack-boilerplate.git"
+  },
+  "private": true,
+  "workspaces": {
+    "packages": [
+      "api",
+      "webapp",
+      "blockchain"
+    ],
+    "nohoist": [
+      "**/*"
+    ]
+  },
+  "devDependencies": {
+    "chalk": "^2.0.1",
+    "jest": "^24.5.0",
+    "jest-haste-map": "^24.5.0",
+    "jest-resolve": "^24.5.0",
+    "precommit": "^1.2.2",
+    "wsrun": "3.6.5"
+  },
+  "resolutions": {
+    "**/hoist-non-react-statics": "^3.0.1"
+  },
+  "keywords": [
+    "NodeJS",
+    "NestJS",
+    "React",
+    "Redux",
+    "Mongoose",
+    "Monorepo",
+    "Ethers",
+    "Etherlime"
+  ],
+  "author": "Michael Yankelev",
+  "license": "MIT",
+  "homepage": "https://gitlab.com/linumlabs/full-stack-boilerplate#readme",
+  "engines": {
+    "node": ">=8.0",
+    "yarn": ">=1.9.4"
+  }
+}
